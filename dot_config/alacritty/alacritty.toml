@@ -1,0 +1,36 @@
+general.import = [ "~/.config/omarchy/current/theme/alacritty.toml" ]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+normal = { family = "Adwaita Mono" }
+bold = { family = "Adwaita Mono" }
+italic = { family = "Adwaita Mono" }
+size = 13.2
+
+[window]
+padding.x = 14
+padding.y = 14
+decorations = "None"
+
+[keyboard]
+bindings = [
+{ key = "Insert", mods = "Shift", action = "Paste" },
+{ key = "Insert", mods = "Control", action = "Copy" },
+
+  # ----- Font Size -----
+  { key = "Plus",  mods = "Control", action = "IncreaseFontSize" },
+  { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+  { key = "0",     mods = "Control", action = "ResetFontSize" },
+  { key = "U", mods = "Alt|Shift", action = "IncreaseFontSize" },
+  { key = "Y", mods = "Alt|Shift", action = "DecreaseFontSize" },
+  { key = "0", mods = "Alt|Shift", action = "ResetFontSize" },
+  # ----- Scrolling -----
+  { key = "Up",    mods = "Control", action = "ScrollLineUp" },
+  { key = "Down",  mods = "Control", action = "ScrollLineDown" },
+  { key = "PageUp",               action = "ScrollPageUp" },
+  { key = "PageDown",             action = "ScrollPageDown" },
+  {key = "K", mods = "Alt|Shift", action = "ScrollLineUp"},
+  {key = "J", mods = "Alt|Shift", action = "ScrollLineDown"}
+]

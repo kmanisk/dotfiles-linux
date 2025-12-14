@@ -1,0 +1,61 @@
+# If not running interactively, don't do anything (leave this at the top of this file)
+[[ $- != *i* ]] && return
+
+# All the default Omarchy aliases and functions
+# (don't mess with these directly, just overwrite them here!)
+source ~/.local/share/omarchy/default/bash/rc
+
+# Add your own exports, aliases, and functions here.
+#
+# Make an alias for invoking commands you use constantly
+# alias p='python'
+
+# Run fastfetch on shell initialization
+# fastfetch
+
+# ─── ALIASES ─────────────────────────────────────────────
+alias ll='ls -lah --color=auto'
+alias la='ls -A --color=auto'
+alias l='ls -CF --color=auto'
+alias update='sudo pacman -Syu'
+alias cls='clear'
+alias grep='grep --color=auto'
+
+# ─── ENV & PATH ─────────────────────────────────────────
+export EDITOR=nvim
+export VISUAL=nvim
+export PATH="$HOME/.local/bin:$PATH"
+
+# ─── QOL FUNCTIONS ──────────────────────────────────────
+# Quick mkcd (make + cd)
+mkcd() { mkdir -p "$1" && cd "$1"; }
+
+
+# Battery percentage (for laptops)
+battery() { cat /sys/class/power_supply/BAT*/capacity 2>/dev/null; }
+
+# ─── FZF (if installed) QOL ────────────────────────────
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+# ─── PATH TO USER SCRIPTS ──────────────────────────────
+# if you have ~/bin or ~/scripts
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+
+# ─── LOAD CUSTOM SCRIPTS IF EXIST ──────────────────────
+for f in ~/.bashrc.d/*.sh; do
+    [ -r "$f" ] && source "$f"
+done
+
+
+eval "$(zoxide init bash --cmd cd)"
+# alias rr='hyprctl monitors | grep -Po "@\K[0-9]+\.[0-9]+"'
+alias rr='hyprctl monitors | grep -Po "1920x1200@\K[0-9]+\.?[0-9]*" | head -n1 | awk '\''{printf "%dHz\n", $1}'\'''
+# ep to edit profile 
+alias ep='nvim ~/.bashrc'
+f() {
+    nvim "$(fzf)"
+}
+eval "$(fzf --bash)"
+# Add this line to your shell configuration file (~/.bashrc or similar)
+alias clip='xclip -selection clipboard'
+export PATH="$HOME/.cargo/bin:$PATH"
